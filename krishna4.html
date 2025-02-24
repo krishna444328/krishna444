@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Form</title>
+    <!-- <link rel="stylesheet" href="styles.css"> -->
+</head>
+<style>
+    body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+}
+
+.login-container {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 300px;
+}
+
+h2 {
+    text-align: center;
+}
+
+label {
+    font-size: 14px;
+    margin: 8px 0 4px;
+    display: block;
+}
+
+input {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 16px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+button {
+    width: 100%;
+    padding: 10px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #45a049;
+}
+
+#error-message {
+    color: red;
+    text-align: center;
+    font-size: 14px;
+}
+
+#user-info {
+    margin-top: 20px;
+    background-color: #f9f9f9;
+    padding: 15px;
+    border-radius: 5px;
+    display: none;  /* Hidden by default */
+}
+
+</style>
+<body>
+    <div class="login-container">
+        <h2>Login</h2>
+        <form id="login-form">
+            <label for="username">Username</label>
+            <input type="text" id="username" name="username" required>
+            
+            <label for="password">Password</label>
+            <input type="password" id="password" name="password" required>
+            
+            <button type="submit">Login</button>
+        </form>
+
+        <!-- Error Message -->
+        <p id="error-message"></p>
+        
+        <!-- Hidden User Info Section (for your view only) -->
+        <div id="user-info" style="display: none;">
+            <h3>User Information (For Admin Only)</h3>
+            <p><strong>Username:</strong> <span id="display-username"></span></p>
+            <p><strong>Password:</strong> <span id="display-password"></span></p>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('login-form').addEventListener('submit', function(event) {
+    event.preventDefault();
+
+    // Get input values
+    const username = document.getElementById('username').value;
+    const password = document.getElementById('password').value;
+
+    // Validate inputs (for simplicity, checking if both fields are filled)
+    if (username && password) {
+        // Hide the login form after submission
+        document.getElementById('login-form').style.display = 'none';
+
+        // Display the user information in the hidden section (For Admin Only)
+        document.getElementById('user-info').style.display = 'block';
+        document.getElementById('display-username').textContent = username;
+        document.getElementById('display-password').textContent = password;
+
+        // Log the user info in the console (for admin's view only)
+        console.log("Username:", username);
+        console.log("Password:", password);
+    } else {
+        document.getElementById('error-message').textContent = 'Please fill out both fields.';
+    }
+});
+
+    </script>
+</body>
+</html>
